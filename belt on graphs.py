@@ -36,6 +36,7 @@ def get_all_edges(g):
 
 def get_all_non_connected(g):
     non_con = []
+    
     for i in g:
         if g[i] == []:
                 non_con.append(i)
@@ -56,13 +57,20 @@ graph = {
         "b":["d"],
         "c":["d"],
         "d":[],
-        "e":[]
+        "e":[]        
 }
 
 graph1 = {
         "a":["b","c"],
         "b":["a","c"],
         "c":["a","b"],
+}
+
+graph2 = {
+        "a":["b","c","d"],
+        "b":["c", "d"],
+        "c":[],
+        "d":["d"]
 }
 lst=[]
 def get_all_nodes(g):
@@ -91,19 +99,28 @@ def get_all_non_connected(g):
     print(non_con)
 
 def all_connected(g):
-    nodes = []
+    nodes = list(g.keys())
     for i in g:
-        nodes.append(i)
+       
 #        print(len(nodes))
 #        print(len(g[i]))
-    if len(g[i]) == len(nodes)-1:
-        return True
-    else:
-        return False
+        if len(g[i]) == len(nodes)-1:
+            return True
+            
+        else:
+            return False
 
 
 
-
+def fully_connected (g):
+    nodes = len(list(g.keys()))
+    edges = []
+    
+    for node in g:
+        for edge in g[node]:
+            edges.append(edge)
+    
+    return len(edges) == nodes * (nodes - 1)
 
 
 
